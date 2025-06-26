@@ -24,7 +24,7 @@ export async function createTask(data: Partial<Task>) {
 
 export async function updateTask(id: string, data: Partial<Task>) {
   const res = await fetch(`${BASE_URL}/tasks/${id}`, {
-    method: "PATCH",
+    method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
