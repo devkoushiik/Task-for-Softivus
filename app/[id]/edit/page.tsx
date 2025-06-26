@@ -6,6 +6,7 @@ import { getTask, updateTask } from "@/lib/api";
 import { Task } from "@/types/task";
 import { useParams } from "next/navigation";
 import toast from "react-hot-toast";
+
 export default function EditTaskPage() {
     
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function EditTaskPage() {
         setForm({
           title: data.title,
           description: data.description,
-          due_date: new Date(data.dueDate).toISOString().slice(0, 16),
+          due_date: new Date(data.due_date ?? data.dueDate).toISOString().slice(0, 16),
           status: data.status.toLowerCase(),
         });
       } catch {
@@ -61,8 +62,9 @@ export default function EditTaskPage() {
         dueDate: new Date(form.due_date).toISOString(),
         status: form.status === "pending" ? "Pending" : "Completed",
       });
-      router.push("/tasks");
       toast.success("Task updated successfully");
+      router.push("/");
+      
     } catch (err) {
       setError("Failed to update task");
     }
@@ -73,7 +75,7 @@ export default function EditTaskPage() {
   if (error) return <p className="p-4 text-red-500 font-medium">{error}</p>;
 
   return (
-    <main className="max-w-2xl mx-auto p-4">
+    <main className="max-w-2xl mx-auto p-4 mt-20">
       <h1 className="text-xl font-bold mb-4">Edit Task</h1>
 
       {error && <p className="text-red-600 mb-3">{error}</p>}
@@ -124,7 +126,15 @@ export default function EditTaskPage() {
         >
           Update Task
         </button>
+
+       
       </form>
+        <button
+          onClick={() => router.push("/")}
+          className="border px-4 ml-[33%] py-2 rounded-xl"
+        >
+          Back to Dashboard
+        </button>
     </main>
   );
 }

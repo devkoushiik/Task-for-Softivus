@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { getTask } from "@/lib/api";
 import { Task } from "@/types/task";
+import { format, parseISO } from "date-fns";
 
 export default function ViewTaskPage() {
   const { id } = useParams();
@@ -11,6 +12,12 @@ export default function ViewTaskPage() {
   const [task, setTask] = useState<Task | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+      const isoString = task?.dueDate;
+      const dateObj = isoString ? parseISO(isoString) : new Date();
+  
+      const formattedDate = format(dateObj, 'MMM d, yyyy'); // "Nov 11, 2025"
+      const formattedTime = format(dateObj, 'HH:mm');
 
   useEffect(() => {
     const fetchTask = async () => {
@@ -28,7 +35,11 @@ export default function ViewTaskPage() {
   }, [id]);
 
   if (loading) {
-    return <p className="p-4 text-gray-500">Loading task...</p>;
+    return (
+      <div className="flex items-center justify-center h-[60vh]">
+      <p className="text-gray-500 text-lg">Loading task...</p>
+      </div>
+    );
   }
 
   if (error || !task) {
@@ -36,9 +47,9 @@ export default function ViewTaskPage() {
   }
 
   return (
-    <main className="max-w-2xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-2">{task.title}</h1>
-      <p className="text-gray-700 mb-4">{task.description}</p>
+    <main className="max-w-2xl mx-auto px-4 py-6 mt-8">
+      <h1 className="text-2xl font-bold mb-2 capitalize">{task.title}</h1>
+      <p className="text-gray-300 text-base p-5 capitalize mb-4 border rounded-xl">{task.description}</p>
 
       <div className="mb-2">
         <span className="font-semibold">Status: </span>
@@ -55,7 +66,7 @@ export default function ViewTaskPage() {
 
       <div>
         <span className="font-semibold">Due Date: </span>
-        {new Date(task.dueDate).toLocaleString()}
+        {formattedDate} at {formattedTime}
       </div>
 
       <div className="mt-6 flex gap-4">

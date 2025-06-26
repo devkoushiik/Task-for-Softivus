@@ -1,8 +1,9 @@
+
 import type { Metadata } from "next";
 import { Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from 'react-hot-toast'
-
+import DarkModeToggle from "@/components/DarkModeToggle";
 const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
@@ -20,16 +21,22 @@ export const metadata: Metadata = {
   description: "Manage your tasks efficiently",
 };
 
+
+
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {                             
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark">
       <body
         className={`${roboto.variable} ${robotoMono.variable} antialiased`}
+        
       >
+        <DarkModeToggle  />
         {children}
         <Toaster position="top-right" />
       </body>
