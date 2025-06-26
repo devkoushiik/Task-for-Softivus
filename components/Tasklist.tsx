@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { format, parseISO } from "date-fns";
 import {motion} from "framer-motion";
+import { Task } from "@/types/task";
 
-export default function Tasklist({ task, onDelete }) {
-    const isoString = task.due_date; // Ensure dueDate is a string
-    const dateObj = parseISO(isoString);
+export default function Tasklist({ task, onDelete }: { task: Task, onDelete: (id: string) => void }) {
+    const isoString = task.dueDate; // Ensure dueDate is a string
+    const dateObj = isoString ? parseISO(isoString) : null;
 
-    const formattedDate = format(dateObj, 'MMM d, yyyy'); // "Nov 11, 2025"
-    const formattedTime = format(dateObj, 'KK:mm');
+    const isValidDate = dateObj instanceof Date && !isNaN(dateObj.getTime());
+    const formattedDate = isValidDate ? format(dateObj, 'MMM d, yyyy') : "Invalid date"; // "Nov 11, 2025"
+    const formattedTime = isValidDate ? format(dateObj, 'KK:mm') : "";
 
     return (
         <motion.div  initial={{ opacity: 0, y: 50 }}

@@ -3,5 +3,5 @@ export interface Task {
   title: string;
   description: string;
   status: 'Pending' | 'Completed';
-  dueDate: string; // ISO STRING
+  dueDate?: string; // ISO STRING
 }

@@ -3,10 +3,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getTask, updateTask } from "@/lib/api";
-import { Task } from "@/types/task";
 import { useParams } from "next/navigation";
 import toast from "react-hot-toast";
-
+import { Task } from "@/types/task";
 export default function EditTaskPage() {
     
   const router = useRouter();
@@ -27,7 +26,7 @@ export default function EditTaskPage() {
         setForm({
           title: data.title,
           description: data.description,
-          due_date: new Date(data.due_date ?? data.dueDate).toISOString().slice(0, 16),
+          due_date: new Date(data.dueDate ?? "").toISOString().slice(0, 16),
           status: data.status.toLowerCase(),
         });
       } catch {
