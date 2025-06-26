@@ -3,8 +3,6 @@ import { format, parseISO } from "date-fns";
 import {motion} from "framer-motion";
 
 export default function Tasklist({ task, onDelete }) {
-    
-
     const isoString = task.due_date; // Ensure dueDate is a string
     const dateObj = parseISO(isoString);
 

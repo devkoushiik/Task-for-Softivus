@@ -70,7 +70,10 @@ export default function EditTaskPage() {
     }
   };
 
-  if (loading) return <p className="p-4 text-gray-500">Loading task...</p>;
+  if (loading) return <div className="flex flex-col items-center">
+        <div className="w-8 h-8 border-4 mt-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-3"></div>
+        <p className="text-gray-500 text-lg">Loading ...</p>
+      </div>
 
   if (error) return <p className="p-4 text-red-500 font-medium">{error}</p>;
 

@@ -6,6 +6,7 @@ import { getTask } from "@/lib/api";
 import { Task } from "@/types/task";
 import { format, parseISO } from "date-fns";
 
+
 export default function ViewTaskPage() {
   const { id } = useParams();
   const router = useRouter();
@@ -37,7 +38,10 @@ export default function ViewTaskPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[60vh]">
-      <p className="text-gray-500 text-lg">Loading task...</p>
+      <div className="flex flex-col items-center">
+        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-3"></div>
+        <p className="text-gray-500 text-lg">Loading ...</p>
+      </div>
       </div>
     );
   }

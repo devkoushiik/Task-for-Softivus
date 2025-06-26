@@ -5,7 +5,6 @@ import { getTasks, deleteTask } from "@/lib/api";
 import { Task } from "@/types/task";
 import Tasklist from "@/components/Tasklist";
 import toast from "react-hot-toast";
-import DarkModeToggle from "@/components/DarkModeToggle";
 import { motion } from "framer-motion";
 
 export default function DashboardPage() {
@@ -39,15 +38,6 @@ export default function DashboardPage() {
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold mb-4">Task Dashboard</h1>
-        <div className="mb-2">
-          <DarkModeToggle />
-        </div>
-      
-      </div>
-      
-
       <div className="flex justify-between mb-4">
         <motion.div initial={{x:-15}} animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }} className="space-x-2">
@@ -72,7 +62,10 @@ export default function DashboardPage() {
       </div>
 
       {loading ? (
-        <p>Loading...</p>
+        <div className="flex flex-col items-center">
+        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-3"></div>
+        <p className="text-gray-500 text-lg">Loading ...</p>
+      </div>
       ) : (
         <div className="space-y-4">
           {filtered.length > 0 ? (
