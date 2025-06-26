@@ -6,6 +6,7 @@ import { Task } from "@/types/task";
 import Tasklist from "@/components/Tasklist";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
+import TaskStats from "@/components/Stats";
 
 export default function DashboardPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -38,6 +39,7 @@ export default function DashboardPage() {
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-6">
+        <TaskStats tasks={tasks} />
       <div className="flex justify-between mb-4">
         <motion.div initial={{x:-15}} animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }} className="space-x-2">
@@ -54,8 +56,9 @@ export default function DashboardPage() {
               {f}
             </button>
           ))}
+          
         </motion.div>
-
+        
         <a href="/new" className="bg-green-600 text-white px-3 py-1 rounded text-sm">
           + New Task
         </a>
