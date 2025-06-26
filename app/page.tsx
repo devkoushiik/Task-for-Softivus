@@ -56,7 +56,7 @@ export default function DashboardPage() {
           ))}
         </div>
 
-        <a href="/tasks/new" className="bg-green-600 text-white px-3 py-1 rounded text-sm">
+        <a href="/new" className="bg-green-600 text-white px-3 py-1 rounded text-sm">
           + New Task
         </a>
       </div>

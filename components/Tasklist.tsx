@@ -13,7 +13,7 @@ export default function Tasklist({ task, onDelete }: Props) {
             <div>
                 <h2 className="font-semibold text-lg">{task.title}</h2>
                 <p className="text-sm text-gray-500">
-                    Due: {task.dueDate && !isNaN(new Date(task.dueDate).getTime())
+                    Due date: {task.dueDate && !isNaN(new Date(task.dueDate).getTime())
                         ? format(new Date(task.dueDate), "MMM d, yyyy")
                         : "Invalid date"}
                 </p>
@@ -26,8 +26,8 @@ export default function Tasklist({ task, onDelete }: Props) {
                 </span>
             </div>
             <div className="flex gap-2">
-                <Link href={`/tasks/${task.id}`} className="text-blue-600 text-sm">View</Link>
-                <Link href={`/tasks/${task.id}/edit`} className="text-green-600 text-sm">Edit</Link>
+                <Link href={`/${task.id}`} className="text-blue-600 text-sm">View</Link>
+                <Link href={`/${task.id}/edit`} className="text-green-600 text-sm">Edit</Link>
                 <button onClick={() => onDelete(task.id)} className="text-red-500 text-sm">Delete</button>
             </div>
         </div>

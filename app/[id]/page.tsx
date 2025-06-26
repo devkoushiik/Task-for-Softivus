@@ -60,7 +60,7 @@ export default function ViewTaskPage() {
 
       <div className="mt-6 flex gap-4">
         <button
-          onClick={() => router.push(`/tasks/${task.id}/edit`)}
+          onClick={() => router.push(`/${task.id}/edit`)}
           className="bg-blue-600 text-white px-4 py-2 rounded"
         >
           Edit

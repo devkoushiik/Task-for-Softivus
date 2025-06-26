@@ -36,7 +36,7 @@ export default function AddTaskPage() {
         dueDate: new Date(form.due_date).toISOString(),
         status: form.status === "pending" ? "Pending" : "Completed",
       });
-      router.push("/tasks");
+      router.push("/");
     } catch (err) {
       setError("Something went wrong. Please try again.");
     }
