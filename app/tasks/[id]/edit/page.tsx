@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { getTask, updateTask } from "@/lib/api";
 import { Task } from "@/types/task";
 import { useParams } from "next/navigation";
+import toast from "react-hot-toast";
 export default function EditTaskPage() {
     
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function EditTaskPage() {
           title: data.title,
           description: data.description,
           due_date: new Date(data.dueDate).toISOString().slice(0, 16),
-          status: data.status === "Completed" ? "completed" : "pending",
+          status: data.status.toLowerCase(),
         });
       } catch {
         setError("Task not found");
@@ -58,9 +59,10 @@ export default function EditTaskPage() {
         title: form.title,
         description: form.description,
         dueDate: new Date(form.due_date).toISOString(),
-        status: form.status === "completed" ? "Completed" : "Pending",
+        status: form.status === "pending" ? "Pending" : "Completed",
       });
-      router.push("/");
+      router.push("/tasks");
+      toast.success("Task updated successfully");
     } catch (err) {
       setError("Failed to update task");
     }

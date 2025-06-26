@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { getTasks, deleteTask } from "@/lib/api";
 import { Task } from "@/types/task";
-import TaskCard from "@/components/Tasklist";
 import Tasklist from "@/components/Tasklist";
+import toast from "react-hot-toast";
 
 export default function DashboardPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -28,6 +28,7 @@ export default function DashboardPage() {
   const handleDelete = async (id: string) => {
     if (confirm("Are you sure you want to delete this task?")) {
       await deleteTask(id);
+      toast.success("Task deleted successfully");
       loadTasks();
     }
   };
