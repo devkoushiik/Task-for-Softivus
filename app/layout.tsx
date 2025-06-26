@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from 'react-hot-toast'
-import DarkModeToggle from "@/components/DarkModeToggle";
+
 const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
@@ -36,7 +36,6 @@ export default function RootLayout({
         className={`${roboto.variable} ${robotoMono.variable} antialiased`}
         
       >
-        <DarkModeToggle  />
         {children}
         <Toaster position="top-right" />
       </body>

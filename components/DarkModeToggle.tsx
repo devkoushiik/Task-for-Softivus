@@ -31,7 +31,7 @@ localStorage.removeItem("theme");
   return (
     <button
       onClick={toggleTheme}
-      className="fixed top-14 right-14 z-50 px-3 py-1.5 text-sm rounded-md border bg-white dark:bg-black text-black dark:text-white transition-all duration-300"
+      className="px-3 py-1.5 text-sm rounded-md border bg-white dark:bg-black text-black dark:text-white transition-all duration-300"
     >
       {isDark ? '☀️ Light Mode' : '🌙 Dark Mode'}
     </button>

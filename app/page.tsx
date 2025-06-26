@@ -5,6 +5,8 @@ import { getTasks, deleteTask } from "@/lib/api";
 import { Task } from "@/types/task";
 import Tasklist from "@/components/Tasklist";
 import toast from "react-hot-toast";
+import DarkModeToggle from "@/components/DarkModeToggle";
+import { motion } from "framer-motion";
 
 export default function DashboardPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -37,10 +39,18 @@ export default function DashboardPage() {
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-4">Task Dashboard</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold mb-4">Task Dashboard</h1>
+        <div className="mb-2">
+          <DarkModeToggle />
+        </div>
+      
+      </div>
+      
 
       <div className="flex justify-between mb-4">
-        <div className="space-x-2">
+        <motion.div initial={{x:-15}} animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }} className="space-x-2">
           {["All", "Pending", "Completed"].map((f) => (
             <button
               key={f}
@@ -54,7 +64,7 @@ export default function DashboardPage() {
               {f}
             </button>
           ))}
-        </div>
+        </motion.div>
 
         <a href="/new" className="bg-green-600 text-white px-3 py-1 rounded text-sm">
           + New Task
